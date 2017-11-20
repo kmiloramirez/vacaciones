@@ -36,6 +36,14 @@ public class SolicitudVacaciones {
 		this.jefeInmediato = jefeInmediato;
 	}
 
+	public void setFechaDeRegreso(Calendar fechaDeRegreso) {
+		this.fechaDeRegreso = fechaDeRegreso;
+	}
+
+	public void setCantidadDeDias(int cantidadDeDias) {
+		CantidadDeDias = cantidadDeDias;
+	}
+
 	public SolicitudVacaciones(int cantidadDeDias) {
 		CantidadDeDias = cantidadDeDias;
 	}
