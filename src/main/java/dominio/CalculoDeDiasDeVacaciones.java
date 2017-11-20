@@ -12,6 +12,8 @@ public class CalculoDeDiasDeVacaciones {
 	public ArrayList<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
 	public static final int MAXIMO_DIAS_VACACIONES = 15;
 	public static final int DIA_VACACION = 1;
+	public static final int DOS_DIAS_DESPUES = 2;
+	public static final int UN_DIA_DESPUES = 1;
 
 	public SolicitudVacaciones CalcularDias(SolicitudVacaciones solicitudVacaciones) {
 		obtenerFestivosDelAnioDesolicitud(solicitudVacaciones);
@@ -24,15 +26,30 @@ public class CalculoDeDiasDeVacaciones {
 		Calendar fechaMaximaDeRegreso = solicitudVacaciones.getFechaDeSolicitudDeinicio();
 		Calendar fechaDesolicitudDeRegreso = solicitudVacaciones.getFechaDeSolicitudFin();
 		int diasDeVacaciones = 0;
-		while ((fechaMaximaDeRegreso != fechaDesolicitudDeRegreso) && diasDeVacaciones <= MAXIMO_DIAS_VACACIONES) {
+		while ((fechaMaximaDeRegreso != fechaDesolicitudDeRegreso) && diasDeVacaciones < MAXIMO_DIAS_VACACIONES) {
 			if (diaHabil(fechaMaximaDeRegreso)) {
 				diasDeVacaciones++;
 			}
 			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, DIA_VACACION );
 		}
+		calcularFechaRealDeRegreso(solicitudVacaciones, fechaMaximaDeRegreso, diasDeVacaciones);
+	}
+
+	public void calcularFechaRealDeRegreso(SolicitudVacaciones solicitudVacaciones, Calendar fechaMaximaDeRegreso,
+			int diasDeVacaciones) {
 		Fechautil.asignarTiempoCero(fechaMaximaDeRegreso);
 		solicitudVacaciones.setCantidadDeDias(diasDeVacaciones);
-		solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+		if(fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){
+			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, DOS_DIAS_DESPUES );
+			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+		}
+		else if(fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){
+			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, UN_DIA_DESPUES );
+			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+		}
+		else{
+			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+		}
 	}
 
 	public boolean diaHabil(Calendar fechaMaximaDeRegreso) {

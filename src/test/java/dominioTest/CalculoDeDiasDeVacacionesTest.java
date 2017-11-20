@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import dominio.CalculoDeDiasDeVacaciones;
 import dominio.SolicitudVacaciones;
+import utilidadFecha.Fechautil;
 
 public class CalculoDeDiasDeVacacionesTest {
 	Calendar fechaInicioVacionesTest = Calendar.getInstance();
@@ -50,5 +51,20 @@ public class CalculoDeDiasDeVacacionesTest {
 		fechaMaximaDeRegresoTest.set(2017, 10, 26);
 		Assert.assertFalse(calculoDeDiasDeVacaciones.esUnDiaEntreLunesYViernes(fechaMaximaDeRegresoTest));
 	}
-	
+	@Test
+	public void contarDiasHabilesTest(){
+		fechaInicioVacionesTest.set(2019, Calendar.OCTOBER, 7);
+		System.out.println("fechaInicioVacionesTest: "+fechaInicioVacionesTest.getTime());
+		fechaFinVacionesTest.set(2019, Calendar.OCTOBER, 28);
+		System.out.println("fechaFinVacionesTest: "+ fechaFinVacionesTest.getTime());
+		Calendar fechaEsperadaFinVaciones = Calendar.getInstance();
+		fechaEsperadaFinVaciones.set(2019, Calendar.OCTOBER, 29);
+		Fechautil.asignarTiempoCero(fechaEsperadaFinVaciones);
+		System.out.println("fechaEsperadaFinVaciones: "+ fechaEsperadaFinVaciones.getTime());
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.CalcularDias(testSolicitudVacaciones);
+		System.out.println("dias:" +testSolicitudVacaciones.getCantidadDeDias());
+		System.out.println("fecha de regreso: "+testSolicitudVacaciones.getFechaDeRegreso().getTime());
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==15&&testSolicitudVacaciones.getFechaDeRegreso().equals(fechaEsperadaFinVaciones));
+	}
 }
