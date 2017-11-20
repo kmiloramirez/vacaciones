@@ -7,7 +7,7 @@ public class SolicitudVacaciones {
 	private Calendar fechaDeSolicitudDeinicio;
 	private Calendar fechaDeSolicitudFin;
 	private Calendar fechaDeRegreso;
-	private int CantidadDeDias;
+	private int cantidadDeDias;
 	private String jefeInmediato;
 
 	public Calendar getFechaDeSolicitudDeinicio() {
@@ -23,7 +23,7 @@ public class SolicitudVacaciones {
 	}
 
 	public int getCantidadDeDias() {
-		return CantidadDeDias;
+		return cantidadDeDias;
 	}
 
 	public String getJefeInmediato() {
@@ -40,12 +40,12 @@ public class SolicitudVacaciones {
 		this.fechaDeRegreso = fechaDeRegreso;
 	}
 
-	public void setCantidadDeDias(int cantidadDeDias) {
-		CantidadDeDias = cantidadDeDias;
+	public void setCantidadDeDias(int cantidaddeDias) {
+		cantidadDeDias = cantidaddeDias;
 	}
 
-	public SolicitudVacaciones(int cantidadDeDias) {
-		CantidadDeDias = cantidadDeDias;
+	public SolicitudVacaciones(int cantidaddeDias) {
+		cantidadDeDias = cantidaddeDias;
 	}
 
 }

@@ -7,13 +7,13 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
-import utilidadFecha.Fechautil;
-import utilidadFecha.FestivosColombia;
+import util.Fechautil;
+import util.FestivosColombia;
 
 public class FestivosTest {
 	
 	FestivosColombia festivos=new FestivosColombia();
-	ArrayList<Calendar> listafestivos=FestivosColombia.DiasFestivos(2019);
+	ArrayList<Calendar> listafestivos=FestivosColombia.diasFestivos(2019);
 	Calendar fechaDePrueba=Calendar.getInstance(); 
 	@Test
 	public void EsfestivoTest() {

@@ -1,19 +1,17 @@
-package utilidadFecha;
+package util;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import utilidadFecha.Fechautil;
-
-import org.springframework.core.type.filter.AssignableTypeFilter;
+import util.Fechautil;
 
 public class FestivosColombia {
 	public static ArrayList<Calendar> diasFestivos = new ArrayList<>();
-	public static int DIA_LUNES = Calendar.MONDAY;
-	public static int DIA_JUEVES= Calendar.THURSDAY;
-	public static int DIA_VIERNES = Calendar.FRIDAY;
-	public static int DIA_DOMINGO = Calendar.SUNDAY;
+	public static final  int DIA_LUNES = Calendar.MONDAY;
+	public static final int  DIA_JUEVES= Calendar.THURSDAY;
+	public static  final int DIA_VIERNES = Calendar.FRIDAY;
+	public static final int DIA_DOMINGO = Calendar.SUNDAY;
 	
-	public static ArrayList<Calendar> DiasFestivos(int anio) {
+	public static ArrayList<Calendar> diasFestivos(int anio) {
 		diasFestivos.clear();
 		Calendar pascua = calcularPascua(anio);
 		Calendar diaFestivo = Calendar.getInstance();
@@ -103,8 +101,13 @@ public class FestivosColombia {
 	}
 
 	private static Calendar calcularPascua(int anio) {
-		int a, b, c, d, e;
-		int m = 24, n = 5;
+		int a;
+		int b;
+		int c;
+		int d;
+		int e;
+		int m = 24;
+		int n = 5;
 
 		if (anio >= 1583 && anio <= 1699) {
 			m = 22;

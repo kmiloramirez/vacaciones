@@ -9,11 +9,12 @@ public class SolicitudBuilder {
 	public static SolicitudVacaciones convertirADominio(SolicitudEntidad solicitudEntity) {
 		if (solicitudEntity == null) {
 			return null;
-		}
+		}else{
 			SolicitudVacaciones solicitud=null;
 			solicitud.setCantidadDeDias(solicitudEntity.getCantidadDeDias());
 			solicitud.setFechaDeRegreso(solicitudEntity.getFechaDeRegreso());
-		return solicitud;
+			return solicitud;
+		}
 	}
 
 	public static SolicitudEntidad convertirAEntity(SolicitudVacaciones solicitud) {
