@@ -2,6 +2,9 @@ package utilidadFecha;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import utilidadFecha.Fechautil;
+
+import org.springframework.core.type.filter.AssignableTypeFilter;
 
 public class FestivosColombia {
 	public static ArrayList<Calendar> diasFestivos = new ArrayList<>();
@@ -12,7 +15,7 @@ public class FestivosColombia {
 	
 	public static ArrayList<Calendar> DiasFestivos(int anio) {
 		diasFestivos.clear();
-		Calendar Pascua = calcularPascua(anio);
+		Calendar pascua = calcularPascua(anio);
 		Calendar diaFestivo = Calendar.getInstance();
 		
 		diaFestivo.set(anio, 0, 1); //1 de enero
@@ -24,27 +27,27 @@ public class FestivosColombia {
 		diaFestivo.set(anio, 2,19);// san jose
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true));
 
-		incluirFecha(siguienteDiaSemana(DIA_DOMINGO, Pascua, true, false)); //Domingo de Ramos
+		incluirFecha(siguienteDiaSemana(DIA_DOMINGO, pascua, true, false)); //Domingo de Ramos
 		
-		incluirFecha(siguienteDiaSemana(DIA_JUEVES, Pascua, true,true)); //Jueves Santo
+		incluirFecha(siguienteDiaSemana(DIA_JUEVES, pascua, true,true)); //Jueves Santo
 		
-        incluirFecha(siguienteDiaSemana(DIA_VIERNES, Pascua, true,true)); //Viernes Santo
+        incluirFecha(siguienteDiaSemana(DIA_VIERNES, pascua, true,true)); //Viernes Santo
         
-        incluirFecha(Pascua); //Pascua
-        System.out.println("pascua "+Pascua.getTime());
+        incluirFecha(pascua); //Pascua
+      
 		
 		diaFestivo.set(anio, 4,1);//dia del trabajo
 		incluirFecha(diaFestivo); 
 		
-		diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
+		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,42);
 		incluirFecha( diaFestivo); //Ascensión de Jesús
 		
-		diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
+		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,63);
 	    incluirFecha( diaFestivo); //Corpus Christi
 	    
-	    diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
+	    diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,70);
 	    incluirFecha(diaFestivo); //Sagrado Corazón
 
@@ -93,6 +96,7 @@ public class FestivosColombia {
 
 	private static void incluirFecha(Calendar diaFestivo) {
 		 if (!diasFestivos.contains(diaFestivo)){
+			 Fechautil.asignarTiempoCero(diaFestivo);
 			 diasFestivos.add(diaFestivo);
 		 }
 
@@ -133,7 +137,6 @@ public class FestivosColombia {
 		Calendar inicioPascua = Calendar.getInstance();
 		if (dia < 10) { // Marzo
 			inicioPascua.set(anio, Calendar.MARCH, dia + 22);
-			System.out.println(inicioPascua.getTime());
 			return inicioPascua;
 		} else // Abril
 		{
@@ -177,4 +180,14 @@ public class FestivosColombia {
 		return fecha;
 	}
 
+	public boolean esfestivo(ArrayList<Calendar>listafestivos,Calendar fechaFestiva){
+		Fechautil.asignarTiempoCero(fechaFestiva);
+		for ( int i=0;i<listafestivos.size();i++){
+			if(fechaFestiva.getTime().equals(listafestivos.get(i).getTime())){
+				return true;
+			}	
+		}
+		return false;
+		
+	}
 }
