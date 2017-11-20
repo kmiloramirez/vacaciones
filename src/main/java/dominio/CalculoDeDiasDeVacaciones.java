@@ -3,8 +3,8 @@ package dominio;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import utilidadFecha.Fechautil;
-import utilidadFecha.FestivosColombia;
+import util.Fechautil;
+import util.FestivosColombia;
 
 
 public class CalculoDeDiasDeVacaciones {
@@ -13,7 +13,7 @@ public class CalculoDeDiasDeVacaciones {
 	public static final int MAXIMO_DIAS_VACACIONES = 15;
 	public static final int DIA_VACACION = 1;
 
-	public SolicitudVacaciones CalcularDias(SolicitudVacaciones solicitudVacaciones) {
+	public SolicitudVacaciones calcularDias(SolicitudVacaciones solicitudVacaciones) {
 		obtenerFestivosDelAnioDesolicitud(solicitudVacaciones);
 		contarDiasHabiles(solicitudVacaciones);
 		return solicitudVacaciones;
@@ -49,7 +49,7 @@ public class CalculoDeDiasDeVacaciones {
 
 	public void obtenerFestivosDelAnioDesolicitud(SolicitudVacaciones solicitudVacaciones) {
 		diasFestivosDeUnAnio.clear();
-		diasFestivosDeUnAnio = FestivosColombia.DiasFestivos(anioDeSolicitud(solicitudVacaciones));
+		diasFestivosDeUnAnio = FestivosColombia.diasFestivos(anioDeSolicitud(solicitudVacaciones));
 	}
 
 	public int anioDeSolicitud(SolicitudVacaciones solicitudVacaciones) {

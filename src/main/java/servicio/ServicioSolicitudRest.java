@@ -25,7 +25,7 @@ public class ServicioSolicitudRest {
 	
 	@RequestMapping(value = "/solicitud/vacaciones", method = RequestMethod.POST)
 	@ResponseBody
-	public SolicitudVacaciones IngresarsolicitudVacaciones(@RequestBody SolicitudVacaciones solicitud) {
+	public SolicitudVacaciones ingresarSolicitudVacaciones(@RequestBody SolicitudVacaciones solicitud) {
 		SolicitudVacaciones solicitudVacaciones=solicitud;
 		return AdministradorSolicitudes.ingresar(solicitudVacaciones);					
 	}

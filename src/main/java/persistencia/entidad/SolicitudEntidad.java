@@ -19,7 +19,7 @@ public class SolicitudEntidad {
 	@Column
 	private Calendar fechaDeRegreso;
 	@Column
-	private int CantidadDeDias;
+	private int cantidadDeDias;
 	@Column
 	private String jefeInmediato;
 	public Long getId() {
@@ -35,7 +35,7 @@ public class SolicitudEntidad {
 		return fechaDeRegreso;
 	}
 	public int getCantidadDeDias() {
-		return CantidadDeDias;
+		return cantidadDeDias;
 	}
 	public String getJefeInmediato() {
 		return jefeInmediato;
@@ -52,8 +52,8 @@ public class SolicitudEntidad {
 	public void setFechaDeRegreso(Calendar fechaDeRegreso) {
 		this.fechaDeRegreso = fechaDeRegreso;
 	}
-	public void setCantidadDeDias(int cantidadDeDias) {
-		CantidadDeDias = cantidadDeDias;
+	public void setCantidadDeDias(int cantidaddeDias) {
+		cantidadDeDias = cantidaddeDias;
 	}
 	public void setJefeInmediato(String jefeInmediato) {
 		this.jefeInmediato = jefeInmediato;
