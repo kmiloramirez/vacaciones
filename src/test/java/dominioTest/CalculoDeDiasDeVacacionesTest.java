@@ -12,6 +12,7 @@ import dominio.SolicitudVacaciones;
 public class CalculoDeDiasDeVacacionesTest {
 	Calendar fechaInicioVacionesTest = Calendar.getInstance();
 	Calendar fechaFinVacionesTest = Calendar.getInstance();
+	Calendar fechaMaximaDeRegresoTest = Calendar.getInstance();
 	SolicitudVacaciones testSolicitudVacaciones;
 	CalculoDeDiasDeVacaciones calculoDeDiasDeVacaciones = new CalculoDeDiasDeVacaciones();
 
@@ -39,5 +40,15 @@ public class CalculoDeDiasDeVacacionesTest {
 		Assert.assertFalse(calculoDeDiasDeVacaciones.diasFestivosDeUnAnio.isEmpty());
 	}
 	
+	@Test
+	public void esUnDiaEntreLunesYViernesTest(){
+		fechaMaximaDeRegresoTest.set(2017, 10, 20);
+		Assert.assertTrue(calculoDeDiasDeVacaciones.esUnDiaEntreLunesYViernes(fechaMaximaDeRegresoTest));
+	}
+	@Test
+	public void noEsUnDiaEntreLunesYViernesTest(){
+		fechaMaximaDeRegresoTest.set(2017, 10, 26);
+		Assert.assertFalse(calculoDeDiasDeVacaciones.esUnDiaEntreLunesYViernes(fechaMaximaDeRegresoTest));
+	}
 	
 }

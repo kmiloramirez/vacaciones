@@ -180,7 +180,7 @@ public class FestivosColombia {
 		return fecha;
 	}
 
-	public boolean esfestivo(ArrayList<Calendar>listafestivos,Calendar fechaFestiva){
+	public static boolean esfestivo(ArrayList<Calendar>listafestivos,Calendar fechaFestiva){
 		Fechautil.asignarTiempoCero(fechaFestiva);
 		for ( int i=0;i<listafestivos.size();i++){
 			if(fechaFestiva.getTime().equals(listafestivos.get(i).getTime())){
