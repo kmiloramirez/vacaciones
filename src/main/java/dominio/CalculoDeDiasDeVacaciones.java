@@ -43,7 +43,7 @@ public class CalculoDeDiasDeVacaciones {
 	}
 
 	public boolean esUnDiaEntreLunesYViernes(Calendar fechaMaximaDeRegreso) {
-		return !(fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY&&fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY);
+		return fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY&&fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY;
 	}
 
 	public void obtenerFestivosDelAnioDesolicitud(SolicitudVacaciones solicitudVacaciones) {
