@@ -17,84 +17,75 @@ public class FestivosColombia {
 		
 		diaFestivo.set(anio, 0, 1); //1 de enero
 		incluirFecha(diaFestivo); 
-		System.out.println("1enero"+diaFestivo.getTime());
 		
 		diaFestivo.set(anio, 0,6); //reyes magos
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("reyes"+ siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
 		
 		diaFestivo.set(anio, 2,19);// san jose
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true));
-		System.out.println("sanjose "+siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
 
 		incluirFecha(siguienteDiaSemana(DIA_DOMINGO, Pascua, true, false)); //Domingo de Ramos
-		System.out.println("domingo ramos "+siguienteDiaSemana(DIA_DOMINGO, Pascua, true, false).getTime());
 		
 		incluirFecha(siguienteDiaSemana(DIA_JUEVES, Pascua, true,true)); //Jueves Santo
-		System.out.println("jueves ramos "+siguienteDiaSemana(DIA_JUEVES, Pascua, true,true).getTime());
 		
         incluirFecha(siguienteDiaSemana(DIA_VIERNES, Pascua, true,true)); //Viernes Santo
-        System.out.println("viernes ramos "+siguienteDiaSemana(DIA_VIERNES, Pascua, true,true).getTime());
         
         incluirFecha(Pascua); //Pascua
         System.out.println("pascua "+Pascua.getTime());
 		
 		diaFestivo.set(anio, 4,1);//dia del trabajo
 		incluirFecha(diaFestivo); 
-		System.out.println("dia del trabajo "+diaFestivo.getTime());
 		
 		diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,42);
 		incluirFecha( diaFestivo); //Ascensión de Jesús
-		System.out.println("ascencion de jesus "+diaFestivo.getTime());
 		
 		diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,63);
 	    incluirFecha( diaFestivo); //Corpus Christi
-	    System.out.println("corpus christi "+diaFestivo.getTime());
 	    
 	    diaFestivo=siguienteDiaSemana(DIA_LUNES, Pascua,false,true);
 		diaFestivo.add(diaFestivo.DAY_OF_YEAR,70);
 	    incluirFecha(diaFestivo); //Sagrado Corazón
-	    System.out.println("sagrado corazon"+diaFestivo.getTime());
+
 		
 		
 		diaFestivo.getTime();
 		diaFestivo.set(anio, Calendar.JUNE, 29);//san pedro y pablo
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("san pedro"+ siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime() );
-
+		
+		
 		diaFestivo.set(anio, 6,20);//Independencia
 		incluirFecha(diaFestivo); 
-		System.out.println("independencia"+diaFestivo.getTime());
+
 		
 		diaFestivo.set(anio, 7,7);//batalla de boyaca
 		incluirFecha(diaFestivo); 
-		System.out.println("batalla boyaca"+diaFestivo.getTime());
+
 		
 		diaFestivo.set(anio, 7,15);//ascension de la virgen
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("ascencion de la viergen"+siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
+
 		
 		diaFestivo.set(anio, 9,12);//dia de la raza
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("dia de la raza "+siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
+
 		
 		diaFestivo.set(anio, 10,1);//todos los santos
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("todos los santos "+siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
+
 		
 		diaFestivo.set(anio, 10,11);//independencia cartagena
 		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		System.out.println("independencia "+siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true).getTime());
+
 		
 		diaFestivo.set(anio, 11,8);//inmaculada concepcion
 		incluirFecha(diaFestivo); 
-		System.out.println("inmaculada concepcion"+diaFestivo.getTime());
+
 		
 		diaFestivo.set(anio, 11,25);//navdad
 		incluirFecha(diaFestivo); 
-		System.out.println("navidad "+diaFestivo.getTime());
+
 		
 		return diasFestivos;
 
