@@ -1,10 +1,19 @@
 package dominio;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class AdministradorSolicitudes {
 
-	public static SolicitudVacaciones ingresar(SolicitudVacaciones solicitud) {
+	@Autowired
+	CalculoDeDiasDeVacaciones calculoDeDiasDeVacaciones ;
+	
+	
+	public SolicitudVacaciones ingresar(SolicitudVacacionesDTO solicitudDto) {
 		
-		return null;
+	SolicitudVacaciones solicitud= new SolicitudVacaciones(solicitudDto.getFechaInicial(), solicitudDto.getFechaFinal(), solicitudDto.getJefeInmediato());
+	calculoDeDiasDeVacaciones.calcularDias(solicitud);
+ 	return solicitud;
+	
 	}
 
 }
