@@ -10,6 +10,6 @@ public class VacacionesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VacacionesApplication.class, args);
-		System.out.println("jhola");
+		
 	}
 }
