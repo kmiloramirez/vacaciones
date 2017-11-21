@@ -109,16 +109,8 @@ public class FestivosColombia {
 		int m = 24;
 		int n = 5;
 
-		if (anio >= 1583 && anio <= 1699) {
-			m = 22;
-			n = 2;
-		} else if (anio >= 1700 && anio <= 1799) {
-			m = 23;
-			n = 3;
-		} else if (anio >= 1800 && anio <= 1899) {
-			m = 23;
-			n = 4;
-		} else if (anio >= 1900 && anio <= 2099) {
+	
+		 if (anio >= 1900 && anio <= 2099) {
 			m = 24;
 			n = 5;
 		} else if (anio >= 2100 && anio <= 2199) {

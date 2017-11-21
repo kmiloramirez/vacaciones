@@ -5,15 +5,20 @@ import persistencia.entidad.SolicitudEntidad;
 
 public class SolicitudBuilder {
 	
-	@SuppressWarnings("null")
+	
 	public static SolicitudVacaciones convertirADominio(SolicitudEntidad solicitudEntity) {
 		if (solicitudEntity == null) {
 			return null;
 		}else{
-			SolicitudVacaciones solicitud=null;
+			if(solicitudEntity.getFechaDeSolicitudDeinicio()!=null){
+			SolicitudVacaciones solicitud= new SolicitudVacaciones(solicitudEntity.getFechaDeSolicitudDeinicio(), solicitudEntity.getFechaDeSolicitudFin(), solicitudEntity.getJefeInmediato());
 			solicitud.setCantidadDeDias(solicitudEntity.getCantidadDeDias());
 			solicitud.setFechaDeRegreso(solicitudEntity.getFechaDeRegreso());
 			return solicitud;
+			}
+			else{
+				return new SolicitudVacaciones(solicitudEntity.getCantidadDeDias());
+			}
 		}
 	}
 

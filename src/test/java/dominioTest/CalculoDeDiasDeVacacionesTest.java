@@ -41,57 +41,95 @@ public class CalculoDeDiasDeVacacionesTest {
 		Assert.assertFalse(calculoDeDiasDeVacaciones.diasFestivosDeUnAnio.isEmpty());
 	}
 	
-	@Test
-	public void esUnDiaEntreLunesYViernesTest(){
-		fechaMaximaDeRegresoTest.set(2017, 10, 20);
-		Assert.assertTrue(calculoDeDiasDeVacaciones.esUnDiaEntreLunesYViernes(fechaMaximaDeRegresoTest));
-	}
-	@Test
-	public void noEsUnDiaEntreLunesYViernesTest(){
-		fechaMaximaDeRegresoTest.set(2017, 10, 26);
-		Assert.assertFalse(calculoDeDiasDeVacaciones.esUnDiaEntreLunesYViernes(fechaMaximaDeRegresoTest));
-	}
+
 	@Test
 	public void contarDiasHabilesTest(){
-		fechaInicioVacionesTest.set(2019, Calendar.OCTOBER, 7);
-		fechaFinVacionesTest.set(2019, Calendar.OCTOBER, 31);	
-		Calendar fechaEsperadaFinVaciones = Calendar.getInstance();
-		fechaEsperadaFinVaciones.set(2019, Calendar.OCTOBER, 29);	
-		Fechautil.asignarTiempoCero(fechaEsperadaFinVaciones);
-		Fechautil.asignarTiempoCero(fechaEsperadaFinVaciones);
+		fechaInicioVacionesTest.set(2017, Calendar.FEBRUARY, 6);
+		fechaFinVacionesTest.set(2017, Calendar.FEBRUARY, 24);
 		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
 		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
-		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==15&&testSolicitudVacaciones.getFechaDeRegreso().equals(fechaEsperadaFinVaciones));
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.FEBRUARY, 27);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==15&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaDeRegresoMayor15Dias(){
+		fechaInicioVacionesTest.set(2017, Calendar.FEBRUARY, 6);
+		fechaFinVacionesTest.set(2017, Calendar.FEBRUARY, 28);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.FEBRUARY, 27);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==15&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaDeRegresoMenor15Dias(){
+		fechaInicioVacionesTest.set(2017, Calendar.FEBRUARY, 8);
+		fechaFinVacionesTest.set(2017, Calendar.FEBRUARY, 14);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.FEBRUARY, 15);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==5&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaFestivaPorMedio(){
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 3);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 14);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 15);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==6&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaFinalSabado(){
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 4);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 11);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 14);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias() == 4
+				&& testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaFinalDomingo(){
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 4);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 12);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 14);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==4&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+	@Test
+	public void contarDiasHabilesTestConFechaFinalViernes(){
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 2);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 3);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 7);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==2&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
 	}
 	@Test
 	public void contarDiasHabilesTestParaEntrarUnDIaFestivo(){
-		System.out.println(fechaInicioVacionesTest.getTime());
-		fechaInicioVacionesTest.set(2019, Calendar.OCTOBER, 7);
-		System.out.println(fechaInicioVacionesTest.getTime());
-		System.out.println(fechaFinVacionesTest.getTime());
-		fechaFinVacionesTest.set(2019, Calendar.OCTOBER, 11);
-		System.out.println(fechaFinVacionesTest.getTime());
-		Calendar fechaEsperadaFinVaciones = Calendar.getInstance();
-		fechaEsperadaFinVaciones.set(2019, Calendar.OCTOBER, 15);
-		System.out.println(fechaEsperadaFinVaciones.getTime());
-		Fechautil.asignarTiempoCero(fechaEsperadaFinVaciones);
-		System.out.println(fechaEsperadaFinVaciones.getTime());
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 2);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 6);
 		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
 		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
-		System.out.println("OBJETOSOLICITUD-->"+testSolicitudVacaciones.getFechaDeRegreso().getTime());
-		System.out.println("ESPERADA-->"+fechaEsperadaFinVaciones.getTime());
-		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==4&&testSolicitudVacaciones.getFechaDeRegreso().equals(fechaEsperadaFinVaciones));
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 7);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==2&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
 	}
-	@Test
-	public void contarDiasHabilesTestFinUnViernes(){
-		fechaInicioVacionesTest.set(2019, Calendar.FEBRUARY, 4);
-		Calendar fechaEsperadaFinVaciones = Calendar.getInstance();
-		fechaEsperadaFinVaciones.set(2019, Calendar.FEBRUARY, 25);
-		Fechautil.asignarTiempoCero(fechaEsperadaFinVaciones);
-		Fechautil.asignarTiempoCero(fechaInicioVacionesTest);
-		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
-		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
-		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==15&&testSolicitudVacaciones.getFechaDeRegreso().equals(fechaEsperadaFinVaciones));
-	}
-	
+		
 }
