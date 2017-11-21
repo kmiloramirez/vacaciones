@@ -15,6 +15,8 @@ public class VacacionConfiguracion {
 	public CalculoDeDiasDeVacaciones creaCalculoDeDiasDeVacaciones(){
 		return new CalculoDeDiasDeVacaciones();
 	}
+	
+	
 	@Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
