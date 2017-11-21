@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dominio.AdministradorSolicitudes;
 import dominio.SolicitudVacaciones;
+import dominio.SolicitudVacacionesDTO;
 
 @EnableAutoConfiguration
 @Transactional
@@ -25,9 +26,9 @@ public class ServicioSolicitudRest {
 	
 	@RequestMapping(value = "/solicitud/vacaciones", method = RequestMethod.POST)
 	@ResponseBody
-	public SolicitudVacaciones ingresarSolicitudVacaciones(@RequestBody SolicitudVacaciones solicitud) {
-		SolicitudVacaciones solicitudVacaciones=solicitud;
-		return AdministradorSolicitudes.ingresar(solicitudVacaciones);					
+	public SolicitudVacaciones ingresarSolicitudVacaciones(@RequestBody SolicitudVacacionesDTO solicitudDto) {
+			 AdministradorSolicitudes.ingresar(solicitudDto);
+			 return null;
 	}
 	
 }

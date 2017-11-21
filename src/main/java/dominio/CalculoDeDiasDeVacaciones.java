@@ -18,7 +18,6 @@ public class CalculoDeDiasDeVacaciones {
 
 	public SolicitudVacaciones calcularDias(SolicitudVacaciones solicitudVacaciones) {
 		obtenerFestivosDelAnioDesolicitud(solicitudVacaciones);
-		;
 		contarDiasHabiles(solicitudVacaciones);
 		return solicitudVacaciones;
 
