@@ -6,7 +6,6 @@ import java.util.Calendar;
 import util.Fechautil;
 import util.FestivosColombia;
 
-
 public class CalculoDeDiasDeVacaciones {
 
 	public ArrayList<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
@@ -14,6 +13,7 @@ public class CalculoDeDiasDeVacaciones {
 	public static final int DIA_VACACION = 1;
 	public static final int DOS_DIAS_DESPUES = 2;
 	public static final int UN_DIA_DESPUES = 1;
+	public static final int CERO_DIAS_DESPUES = 0;
 
 	public SolicitudVacaciones calcularDias(SolicitudVacaciones solicitudVacaciones) {
 		obtenerFestivosDelAnioDesolicitud(solicitudVacaciones);
@@ -26,11 +26,13 @@ public class CalculoDeDiasDeVacaciones {
 		Calendar fechaMaximaDeRegreso = solicitudVacaciones.getFechaDeSolicitudDeinicio();
 		Calendar fechaDesolicitudDeRegreso = solicitudVacaciones.getFechaDeSolicitudFin();
 		int diasDeVacaciones = 0;
-		while ((fechaMaximaDeRegreso != fechaDesolicitudDeRegreso) && diasDeVacaciones < MAXIMO_DIAS_VACACIONES) {
+		Fechautil.asignarTiempoCero(fechaDesolicitudDeRegreso);
+		Fechautil.asignarTiempoCero(fechaMaximaDeRegreso);
+		while (!(fechaMaximaDeRegreso.equals(fechaDesolicitudDeRegreso)) && diasDeVacaciones < MAXIMO_DIAS_VACACIONES) {
 			if (diaHabil(fechaMaximaDeRegreso)) {
 				diasDeVacaciones++;
 			}
-			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, DIA_VACACION );
+			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, DIA_VACACION);
 		}
 		calcularFechaRealDeRegreso(solicitudVacaciones, fechaMaximaDeRegreso, diasDeVacaciones);
 	}
@@ -39,16 +41,23 @@ public class CalculoDeDiasDeVacaciones {
 			int diasDeVacaciones) {
 		Fechautil.asignarTiempoCero(fechaMaximaDeRegreso);
 		solicitudVacaciones.setCantidadDeDias(diasDeVacaciones);
-		if(fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){
-			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, DOS_DIAS_DESPUES );
-			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+		if (fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+			aumentarDias(solicitudVacaciones, fechaMaximaDeRegreso, DOS_DIAS_DESPUES);
+		} else if (fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			aumentarDias(solicitudVacaciones, fechaMaximaDeRegreso, UN_DIA_DESPUES);
+		} else {
+			aumentarDias(solicitudVacaciones, fechaMaximaDeRegreso, CERO_DIAS_DESPUES);
 		}
-		else if(fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){
-			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, UN_DIA_DESPUES );
+	}
+
+	public void aumentarDias(SolicitudVacaciones solicitudVacaciones, Calendar fechaMaximaDeRegreso,
+			int diasAAUmentar) {
+		fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, diasAAUmentar);
+		if(noEsUnDiaFestivo(fechaMaximaDeRegreso)){
 			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
 		}
 		else{
-			solicitudVacaciones.setFechaDeRegreso(fechaMaximaDeRegreso);
+			fechaMaximaDeRegreso.add(fechaMaximaDeRegreso.DAY_OF_YEAR, UN_DIA_DESPUES);
 		}
 	}
 
@@ -61,7 +70,8 @@ public class CalculoDeDiasDeVacaciones {
 	}
 
 	public boolean esUnDiaEntreLunesYViernes(Calendar fechaMaximaDeRegreso) {
-		return (fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY&&fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY);
+		return (fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY
+				&& fechaMaximaDeRegreso.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY);
 	}
 
 	public void obtenerFestivosDelAnioDesolicitud(SolicitudVacaciones solicitudVacaciones) {
@@ -71,7 +81,6 @@ public class CalculoDeDiasDeVacaciones {
 
 	public int anioDeSolicitud(SolicitudVacaciones solicitudVacaciones) {
 		return solicitudVacaciones.getFechaDeSolicitudDeinicio().get(Calendar.YEAR);
-
 	}
 
 }

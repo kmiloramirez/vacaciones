@@ -12,4 +12,12 @@ public class Fechautil {
 		return fecha;
 	}
 
+	public static Calendar setearFecha(Calendar fecha,int anio,int mes,int dia) {
+		asignarTiempoCero(fecha);
+		fecha.set(Calendar.YEAR, anio );
+		fecha.set(Calendar.MONTH, mes);
+		fecha.set(Calendar.DAY_OF_MONTH,dia);
+		return fecha;
+	}
+
 }
