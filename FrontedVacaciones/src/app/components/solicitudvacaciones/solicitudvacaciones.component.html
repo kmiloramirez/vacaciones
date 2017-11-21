@@ -1,0 +1,95 @@
+<h1 id="titulo1">Solicitud de Vacaciones</h1>
+<div id="fondo" class="col-lg-8 col-xs-12">
+    <div class="container" class="col-lg-13 col-xs-12">
+      
+          <app-texto-informacion></app-texto-informacion>        
+        <form class="form-horizontal" id="contenedor" (ngSubmit)="ingresoSolicitud($event)">
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Tipo de Solicitud</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list" aria-hidden="true"></i></span>                  
+                  <select [(ngModel)]="selectedoption" name="Select option" class="form-control"> 
+                    <option *ngFor="let n of options" [attr.value]="n">{{n}}</option>
+                  </select>
+              </div>
+             </div>
+            </div>  
+
+        <div *ngIf="selectedoption===cond">    
+       
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Jefe Inmediato</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>   
+              <input required type="text" class="form-control"  placeholder="Jefe Inmediato" name="jefeInmediato">
+            </div>
+          </div>
+        </div>
+
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Fecha Inicio</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>   
+                <input required [(ngModel)]="fechaInicio" type="date"  class="form-control" (ngModelChange)="diferenciaDias()"placeholder="Fecha de Inicio" name="fechainicio">
+              </div>            
+             </div>
+             </div>
+           
+             <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Fecha de Finalización</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                   <input required [(ngModel)]="fechaFin" type="date"  class="form-control"(ngModelChange)="diferenciaDias()" placeholder="Fecha de Finalización" name="fechafin">
+                </div>               
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Total de días a solicitar</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time" aria-hidden="true"></i></span>
+                    <input  [(ngModel)]="dias" disabled="disabled" type="number" class="form-control" placeholder="Total de Dias a Solicitar" value="{{dias}}" name="totaldias">
+                  </div>
+                </div>  
+            </div>
+           <div class="form-group">
+                <label for="name" class="cols-sm-2 control-calendar">Fecha de Regreso</label>
+                <div class="cols-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                  <input [(ngModel)]="fechaRegreso"  type="text" disabled="disabled" class="form-control"  placeholder="Fecha de regreso " value="{{fechaRegreso | date:'medium'}}" name="fecharegreso">
+                </div>
+              </div>  
+            </div>
+        </div>
+        
+              <div *ngIf="selectedoption!=cond"> 
+                  <div class="form-group">
+                      <label for="name" class="cols-sm-2 control-label">Total de días a solicitar</label>
+                      <div class="cols-sm-7">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-time" aria-hidden="true"></i></span>
+                    <input required type="number" class="form-control"  placeholder="Total de días a solicitar" name="totaldias">
+                  </div>
+                </div>     
+              </div>    
+              </div>  
+
+              
+                  <div  id ="btns" class="form-group">
+                      <button class="btn" type="button" ><span>Cancelar</span></button>
+                      <button class="btn" type="submit"><span>Enviar</span></button>
+                  </div>                
+      
+<app-date-picker>cargando</app-date-picker>
+
+
+        </form>
+      </div>
+    </div>
+
