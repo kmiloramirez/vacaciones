@@ -35,14 +35,10 @@ public class CalculoDeDiasDeVacaciones {
 	private void contarDiasHabiles(SolicitudVacaciones solicitudVacaciones) {
 		Calendar fechaSolicitudFinVaciones = solicitudVacaciones.getFechaDeSolicitudFin();
 		Calendar fechaDeRegreso = solicitudVacaciones.getFechaDeSolicitudDeinicio();
-		System.out.println(fechaSolicitudFinVaciones.getTime());
-		System.out.println(fechaDeRegreso.getTime());
 		int diasDeVacaciones = 0;
 		int diaDeLaSemana;
 		Fechautil.asignarTiempoCero(fechaSolicitudFinVaciones);
 		Fechautil.asignarTiempoCero(fechaDeRegreso);
-		System.out.println(fechaSolicitudFinVaciones.getTime());
-		System.out.println(fechaDeRegreso.getTime());
 		while ((fechaDeRegreso.getTimeInMillis() <= fechaSolicitudFinVaciones.getTimeInMillis())
 				&& diasDeVacaciones != MAXIMO_DIAS_VACACIONES) {
 			diaDeLaSemana = fechaDeRegreso.get(Calendar.DAY_OF_WEEK);
@@ -68,8 +64,6 @@ public class CalculoDeDiasDeVacaciones {
 		}
 		solicitudVacaciones.setCantidadDeDias(diasDeVacaciones);
 		solicitudVacaciones.setFechaDeRegreso(fechaDeRegreso);
-		System.out.println(diasDeVacaciones);
-		System.out.println(fechaDeRegreso.getTime());
 
 	}
 

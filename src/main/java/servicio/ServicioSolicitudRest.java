@@ -31,8 +31,8 @@ public class ServicioSolicitudRest {
 	@ResponseBody	
 	public SolicitudVacaciones ingresarSolicitudVacaciones(@RequestBody SolicitudVacacionesDTO solicitudDto) {
 			
-			solicitudDto.setFechaInicial(Fechautil.dateToCalendar(solicitudDto.getFechaInicio()));
-			solicitudDto.setFechaFinal(Fechautil.dateToCalendar(solicitudDto.getFechaFin()));
+			solicitudDto.setFechaInicial(Fechautil.dateToCalendarColombianZone(solicitudDto.getFechaInicio()));
+			solicitudDto.setFechaFinal(Fechautil.dateToCalendarColombianZone(solicitudDto.getFechaFin()));
 			AdministradorSolicitudes administrador= new AdministradorSolicitudes();
 			System.out.println(solicitudDto.getFechaInicial().getTime());
 			System.out.println(solicitudDto.getFechaFinal().getTime());

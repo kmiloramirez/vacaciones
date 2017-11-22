@@ -1,8 +1,6 @@
 package util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,11 +14,11 @@ public class Fechautil {
 		return fecha;
 	}
 
-	public static Calendar dateToCalendar(Date date )
+	public static Calendar dateToCalendarColombianZone(Date date )
 	{
 	  Calendar cal = Calendar.getInstance();
 	  cal.setTime(date);
-	  cal.setTimeInMillis(cal.getTimeInMillis()+18000000);
+	  cal.add(Calendar.DAY_OF_YEAR, 1);
 	  return cal;
 	 }
 
