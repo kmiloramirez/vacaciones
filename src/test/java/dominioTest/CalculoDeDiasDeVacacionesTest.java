@@ -132,4 +132,16 @@ public class CalculoDeDiasDeVacacionesTest {
 		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==2&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
 	}
 		
+	@Test
+	public void contarDiasHabilesTestParaEntrarPAsadoUnFestivo(){
+		fechaInicioVacionesTest.set(2017, Calendar.NOVEMBER, 1);
+		fechaFinVacionesTest.set(2017, Calendar.NOVEMBER, 8);
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
+		Calendar fechaEsperadaTest=Calendar.getInstance();
+		fechaEsperadaTest.set(2017, Calendar.NOVEMBER, 9);
+		Fechautil.asignarTiempoCero(fechaEsperadaTest);
+		Assert.assertTrue(testSolicitudVacaciones.getCantidadDeDias()==5&&testSolicitudVacaciones.getFechaDeRegreso().getTime().equals(fechaEsperadaTest.getTime()));
+	}
+		
 }
