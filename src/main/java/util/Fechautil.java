@@ -20,6 +20,7 @@ public class Fechautil {
 	{
 	  Calendar cal = Calendar.getInstance();
 	  cal.setTime(date);
+	  cal.setTimeInMillis(cal.getTimeInMillis()+18000000);
 	  return cal;
 	 }
 

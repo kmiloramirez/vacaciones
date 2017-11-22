@@ -34,6 +34,8 @@ public class ServicioSolicitudRest {
 			solicitudDto.setFechaInicial(Fechautil.dateToCalendar(solicitudDto.getFechaInicio()));
 			solicitudDto.setFechaFinal(Fechautil.dateToCalendar(solicitudDto.getFechaFin()));
 			AdministradorSolicitudes administrador= new AdministradorSolicitudes();
+			System.out.println(solicitudDto.getFechaInicial().getTime());
+			System.out.println(solicitudDto.getFechaFinal().getTime());
 			return administrador.ingresar(solicitudDto.getFechaInicial(),solicitudDto.getFechaFinal(),solicitudDto.getJefeInmediato());
 	}
 	
