@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dominio.AdministradorSolicitudes;
 import dominio.SolicitudVacaciones;
 import dominio.SolicitudVacacionesDTO;
+import util.Fechautil;
 
 @EnableAutoConfiguration
 @Transactional
@@ -27,8 +28,11 @@ public class ServicioSolicitudRest {
 	}
 	@CrossOrigin
 	@RequestMapping(value = "/solicitud/vacaciones", method = RequestMethod.POST)
-	@ResponseBody
+	@ResponseBody	
 	public SolicitudVacaciones ingresarSolicitudVacaciones(@RequestBody SolicitudVacacionesDTO solicitudDto) {
+			
+			solicitudDto.setFechaInicial(Fechautil.dateToCalendar(solicitudDto.getFechaInicio()));
+			solicitudDto.setFechaFinal(Fechautil.dateToCalendar(solicitudDto.getFechaFin()));
 			AdministradorSolicitudes administrador= new AdministradorSolicitudes();
 			return administrador.ingresar(solicitudDto.getFechaInicial(),solicitudDto.getFechaFinal(),solicitudDto.getJefeInmediato());
 	}

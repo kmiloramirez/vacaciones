@@ -3,7 +3,9 @@ package dominioTest;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Date;
 
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,4 +25,11 @@ public class UtilTest {
 		
 	}
 
+	@Test
+	public void dateToCalendartest() {
+		Date fechaprueba =new Date();
+		Calendar fechaCalanedar=Fechautil.dateToCalendar(fechaprueba);
+		assertTrue(fechaCalanedar  instanceof Calendar);
+		
+	}
 }

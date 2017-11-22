@@ -1,6 +1,10 @@
 package util;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Fechautil {
 	
@@ -12,6 +16,11 @@ public class Fechautil {
 		return fecha;
 	}
 
-	
+	public static Calendar dateToCalendar(Date date )
+	{
+	  Calendar cal = Calendar.getInstance();
+	  cal.setTime(date);
+	  return cal;
+	 }
 
 }
