@@ -2,13 +2,14 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import util.Fechautil;
 import util.FestivosColombia;
 
 public class CalculoDeDiasDeVacaciones {
 
-	public ArrayList<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
+	public List<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
 	public static final int MAXIMO_DIAS_VACACIONES = 15;
 	public static final int DIA_VACACION = 1;
 	public static final int TRES_DIAS_DESPUES = 3;

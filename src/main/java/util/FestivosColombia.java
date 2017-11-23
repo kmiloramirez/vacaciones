@@ -2,16 +2,22 @@ package util;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 import util.Fechautil;
 
 public class FestivosColombia {
-	public static ArrayList<Calendar> diasFestivos = new ArrayList<>();
+	public FestivosColombia() {
+		super();
+	}
+
+	public static final List<Calendar> diasFestivos = new ArrayList<>();
 	public static final  int DIA_LUNES = Calendar.MONDAY;
 	public static final int  DIA_JUEVES= Calendar.THURSDAY;
 	public static  final int DIA_VIERNES = Calendar.FRIDAY;
 	public static final int DIA_DOMINGO = Calendar.SUNDAY;
 	
-	public static ArrayList<Calendar> diasFestivos(int anio) {
+	public static List<Calendar> diasFestivos(int anio) {
 		diasFestivos.clear();
 		Calendar pascua = calcularPascua(anio);
 		Calendar diaFestivo = Calendar.getInstance();
@@ -175,7 +181,7 @@ public class FestivosColombia {
 		return fecha;
 	}
 
-	public static boolean esfestivo(ArrayList<Calendar>listafestivos,Calendar fechaFestiva){
+	public static boolean esfestivo(List<Calendar>listafestivos,Calendar fechaFestiva){
 		Fechautil.asignarTiempoCero(fechaFestiva);
 		for ( int i=0;i<listafestivos.size();i++){
 			if(fechaFestiva.getTime().equals(listafestivos.get(i).getTime())){

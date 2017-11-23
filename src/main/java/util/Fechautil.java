@@ -6,6 +6,11 @@ import java.util.Date;
 
 public class Fechautil {
 	
+	public Fechautil() {
+		super();
+		
+	}
+
 	public static Calendar asignarTiempoCero(Calendar fecha) {
 		fecha.set(Calendar.HOUR, 0);
 		fecha.set(Calendar.MILLISECOND, 0);
