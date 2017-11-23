@@ -49,22 +49,30 @@ public class CalculoDeDiasDeVacaciones {
 			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, DIA_VACACION);
 		}
 		diaDeLaSemana = fechaDeRegreso.get(Calendar.DAY_OF_WEEK);
-		 if (diaDeLaSemana == Calendar.SATURDAY) {
-			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, DOS_DIAS_DESPUES);
-		}
-		else if (diaDeLaSemana == Calendar.SUNDAY) {
-			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, UN_DIA_DESPUES);
-		}
-		else {
-			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, CERO_DIAS_DESPUES);
-		}
-
-		if (esFestivo(fechaDeRegreso)) {
-			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, UN_DIA_DESPUES);
-		}
+		verificarFechaRegresoParaDiaHabil(fechaDeRegreso, diaDeLaSemana);
 		solicitudVacaciones.setCantidadDeDias(diasDeVacaciones);
 		solicitudVacaciones.setFechaDeRegreso(fechaDeRegreso);
 
+	}
+
+	public void verificarFechaRegresoParaDiaHabil(Calendar fechaDeRegreso, int diaDeLaSemana) {
+		if (diaDeLaSemana == Calendar.SATURDAY) {
+			calcularFechaDeRegreso(fechaDeRegreso,DOS_DIAS_DESPUES);
+		}
+		else if (diaDeLaSemana == Calendar.SUNDAY) {
+			calcularFechaDeRegreso(fechaDeRegreso, UN_DIA_DESPUES);
+		}
+		else {
+			calcularFechaDeRegreso(fechaDeRegreso, CERO_DIAS_DESPUES);
+		}
+
+		if (esFestivo(fechaDeRegreso)) {
+			calcularFechaDeRegreso(fechaDeRegreso, UN_DIA_DESPUES);
+		}
+	}
+
+	public void calcularFechaDeRegreso(Calendar fechaDeRegreso,int diasAnadidos) {
+		fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, diasAnadidos);
 	}
 
 	private boolean esFestivo(Calendar fechaDeRegreso) {
