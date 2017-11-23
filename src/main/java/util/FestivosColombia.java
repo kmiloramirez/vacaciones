@@ -7,11 +7,10 @@ import java.util.List;
 import util.Fechautil;
 
 public class FestivosColombia {
-	public FestivosColombia() {
-		super();
+	private FestivosColombia() {
 	}
 
-	public static final List<Calendar> diasFestivos = new ArrayList<>();
+	protected static final List<Calendar> diasFestivos = new ArrayList<>();
 	public static final  int DIA_LUNES = Calendar.MONDAY;
 	public static final int  DIA_JUEVES= Calendar.THURSDAY;
 	public static  final int DIA_VIERNES = Calendar.FRIDAY;
@@ -44,15 +43,15 @@ public class FestivosColombia {
 		incluirFecha(diaFestivo); 
 		
 		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(diaFestivo.DAY_OF_YEAR,42);
+		diaFestivo.add(Calendar.DAY_OF_YEAR,42);
 		incluirFecha( diaFestivo); //Ascensión de Jesús
 		
 		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(diaFestivo.DAY_OF_YEAR,63);
+		diaFestivo.add(Calendar.DAY_OF_YEAR,63);
 	    incluirFecha( diaFestivo); //Corpus Christi
 	    
 	    diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(diaFestivo.DAY_OF_YEAR,70);
+		diaFestivo.add(Calendar.DAY_OF_YEAR,70);
 	    incluirFecha(diaFestivo); //Sagrado Corazón
 
 		
@@ -164,18 +163,18 @@ public class FestivosColombia {
 		}
 		else{
 			if(haciaAtras){
-				fecha.add(fecha.DAY_OF_YEAR, -1);
+				fecha.add(Calendar.DAY_OF_YEAR, -1);
 			}
 			else{
-				fecha.add(fecha.DAY_OF_YEAR, 1);
+				fecha.add(Calendar.DAY_OF_YEAR, 1);
 			}
 		}
 		while (fecha.get(Calendar.DAY_OF_WEEK) != diaSemana) {
 			if(haciaAtras){
-				fecha.add(fecha.DAY_OF_YEAR, -1);
+				fecha.add(Calendar.DAY_OF_YEAR, -1);
 			}
 			else{
-				fecha.add(fecha.DAY_OF_YEAR, 1);
+				fecha.add(Calendar.DAY_OF_YEAR, 1);
 			}
 		}
 		return fecha;

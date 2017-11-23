@@ -9,7 +9,7 @@ import util.FestivosColombia;
 
 public class CalculoDeDiasDeVacaciones {
 
-	public List<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
+	private static  List<Calendar> diasFestivosDeUnAnio = new ArrayList<>();
 	public static final int MAXIMO_DIAS_VACACIONES = 15;
 	public static final int DIA_VACACION = 1;
 	public static final int TRES_DIAS_DESPUES = 3;
@@ -24,12 +24,12 @@ public class CalculoDeDiasDeVacaciones {
 
 	}
 
-	public void obtenerFestivosDelAnioDesolicitud(SolicitudVacaciones solicitudVacaciones) {
-		diasFestivosDeUnAnio.clear();
-		diasFestivosDeUnAnio = FestivosColombia.diasFestivos(anioDeSolicitud(solicitudVacaciones));
+	public static void obtenerFestivosDelAnioDesolicitud(SolicitudVacaciones solicitudVacaciones) {
+		getDiasFestivosDeUnAnio().clear();
+		setDiasFestivosDeUnAnio(FestivosColombia.diasFestivos(anioDeSolicitud(solicitudVacaciones)));
 	}
 
-	public int anioDeSolicitud(SolicitudVacaciones solicitudVacaciones) {
+	public static int anioDeSolicitud(SolicitudVacaciones solicitudVacaciones) {
 		return solicitudVacaciones.getFechaDeSolicitudDeinicio().get(Calendar.YEAR);
 	}
 
@@ -47,7 +47,7 @@ public class CalculoDeDiasDeVacaciones {
 					&& !esFestivo(fechaDeRegreso)) {
 				diasDeVacaciones++;
 			}
-			fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, DIA_VACACION);
+			fechaDeRegreso.add(Calendar.DAY_OF_YEAR, DIA_VACACION);
 		}
 		diaDeLaSemana = fechaDeRegreso.get(Calendar.DAY_OF_WEEK);
 		verificarFechaRegresoParaDiaHabil(fechaDeRegreso, diaDeLaSemana);
@@ -73,11 +73,19 @@ public class CalculoDeDiasDeVacaciones {
 	}
 
 	public void calcularFechaDeRegreso(Calendar fechaDeRegreso,int diasAnadidos) {
-		fechaDeRegreso.add(fechaDeRegreso.DAY_OF_YEAR, diasAnadidos);
+		fechaDeRegreso.add(Calendar.DAY_OF_YEAR, diasAnadidos);
 	}
 
 	private boolean esFestivo(Calendar fechaDeRegreso) {
-		return FestivosColombia.esfestivo(diasFestivosDeUnAnio, fechaDeRegreso);
+		return FestivosColombia.esfestivo(getDiasFestivosDeUnAnio(), fechaDeRegreso);
+	}
+
+	public static List<Calendar> getDiasFestivosDeUnAnio() {
+		return diasFestivosDeUnAnio;
+	}
+
+	public static void setDiasFestivosDeUnAnio(List<Calendar> diasFestivosDeUnAnio) {
+		CalculoDeDiasDeVacaciones.diasFestivosDeUnAnio = diasFestivosDeUnAnio;
 	}
 
 }

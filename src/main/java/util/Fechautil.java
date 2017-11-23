@@ -6,9 +6,7 @@ import java.util.Date;
 
 public class Fechautil {
 	
-	public Fechautil() {
-		super();
-		
+	private Fechautil() {		
 	}
 
 	public static Calendar asignarTiempoCero(Calendar fecha) {

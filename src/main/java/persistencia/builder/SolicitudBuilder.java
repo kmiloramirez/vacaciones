@@ -5,6 +5,8 @@ import persistencia.entidad.SolicitudEntidad;
 
 public class SolicitudBuilder {
 	
+	private SolicitudBuilder(){
+	}
 	
 	public static SolicitudVacaciones convertirADominio(SolicitudEntidad solicitudEntity) {
 		if (solicitudEntity == null) {

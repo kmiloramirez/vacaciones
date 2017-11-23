@@ -38,7 +38,7 @@ public class CalculoDeDiasDeVacacionesTest {
 		fechaFinVacionesTest.set(2018, 0, 1);
 		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
 		calculoDeDiasDeVacaciones.obtenerFestivosDelAnioDesolicitud(testSolicitudVacaciones);
-		Assert.assertFalse(calculoDeDiasDeVacaciones.diasFestivosDeUnAnio.isEmpty());
+		Assert.assertFalse(calculoDeDiasDeVacaciones.getDiasFestivosDeUnAnio().isEmpty());
 	}
 	
 
