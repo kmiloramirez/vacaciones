@@ -34,8 +34,6 @@ public class ServicioSolicitudRest {
 			solicitudDto.setFechaInicial(Fechautil.dateToCalendarColombianZone(solicitudDto.getFechaInicio()));
 			solicitudDto.setFechaFinal(Fechautil.dateToCalendarColombianZone(solicitudDto.getFechaFin()));
 			AdministradorSolicitudes administrador= new AdministradorSolicitudes();
-			System.out.println(solicitudDto.getFechaInicial().getTime());
-			System.out.println(solicitudDto.getFechaFinal().getTime());
 			return administrador.ingresar(solicitudDto.getFechaInicial(),solicitudDto.getFechaFinal(),solicitudDto.getJefeInmediato());
 	}
 	
