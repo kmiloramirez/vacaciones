@@ -11,97 +11,81 @@ public class FestivosColombia {
 	}
 
 	protected static final List<Calendar> diasFestivos = new ArrayList<>();
-	public static final  int DIA_LUNES = Calendar.MONDAY;
-	public static final int  DIA_JUEVES= Calendar.THURSDAY;
-	public static  final int DIA_VIERNES = Calendar.FRIDAY;
+	public static final int DIA_LUNES = Calendar.MONDAY;
+	public static final int DIA_JUEVES = Calendar.THURSDAY;
+	public static final int DIA_VIERNES = Calendar.FRIDAY;
 	public static final int DIA_DOMINGO = Calendar.SUNDAY;
-	
+
 	public static List<Calendar> diasFestivos(int anio) {
 		diasFestivos.clear();
 		Calendar pascua = calcularPascua(anio);
 		Calendar diaFestivo = Calendar.getInstance();
-		
-		diaFestivo.set(anio, 0, 1); //1 de enero
-		incluirFecha(diaFestivo); 
-		
-		diaFestivo.set(anio, 0,6); //reyes magos
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		
-		diaFestivo.set(anio, 2,19);// san jose
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true));
 
-		incluirFecha(siguienteDiaSemana(DIA_DOMINGO, pascua, true, false)); //Domingo de Ramos
-		
-		incluirFecha(siguienteDiaSemana(DIA_JUEVES, pascua, true,true)); //Jueves Santo
-		
-        incluirFecha(siguienteDiaSemana(DIA_VIERNES, pascua, true,true)); //Viernes Santo
-        
-        incluirFecha(pascua); //Pascua
-      
-		
-		diaFestivo.set(anio, 4,1);//dia del trabajo
-		incluirFecha(diaFestivo); 
-		
-		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(Calendar.DAY_OF_YEAR,42);
-		incluirFecha( diaFestivo); //Ascensión de Jesús
-		
-		diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(Calendar.DAY_OF_YEAR,63);
-	    incluirFecha( diaFestivo); //Corpus Christi
-	    
-	    diaFestivo=siguienteDiaSemana(DIA_LUNES, pascua,false,true);
-		diaFestivo.add(Calendar.DAY_OF_YEAR,70);
-	    incluirFecha(diaFestivo); //Sagrado Corazón
+		incluirFechaFestivaFija(anio, Calendar.JANUARY, 1);// primero de enero
 
-		
-		
+		diaFestivo.set(anio, Calendar.JANUARY, 6); // reyes magos
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
+
+		diaFestivo.set(anio, Calendar.MARCH, 19);// san jose
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
+
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_DOMINGO, pascua, true, false)); // Domingo de Ramos
+
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_JUEVES, pascua, true, true)); // Jueves Santo
+
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_VIERNES, pascua, true, true)); // Viernes Santo
+
+		incluirFechaVariablePorAnio(pascua); // Pascua
+
+		incluirFechaFestivaFija(anio, Calendar.MAY, 1); // primero de mayo
+
+		diaFestivo = siguienteDiaSemana(DIA_LUNES, pascua, false, true);
+		diaFestivo.add(Calendar.DAY_OF_YEAR, 42);
+		incluirFechaVariablePorAnio(diaFestivo); // Ascensión de Jesús
+
+		diaFestivo = siguienteDiaSemana(DIA_LUNES, pascua, false, true);
+		diaFestivo.add(Calendar.DAY_OF_YEAR, 63);
+		incluirFechaVariablePorAnio(diaFestivo); // Corpus Christi
+
+		diaFestivo = siguienteDiaSemana(DIA_LUNES, pascua, false, true);
+		diaFestivo.add(Calendar.DAY_OF_YEAR, 70);
+		incluirFechaVariablePorAnio(diaFestivo); // Sagrado Corazón
+
 		diaFestivo.getTime();
-		diaFestivo.set(anio, Calendar.JUNE, 29);//san pedro y pablo
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
-		
-		
-		diaFestivo.set(anio, 6,20);//Independencia
-		incluirFecha(diaFestivo); 
+		diaFestivo.set(anio, Calendar.JUNE, 29);// san pedro y pablo
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
 
-		
-		diaFestivo.set(anio, 7,7);//batalla de boyaca
-		incluirFecha(diaFestivo); 
+		incluirFechaFestivaFija(anio, Calendar.JULY, 20);// Independencia
 
-		
-		diaFestivo.set(anio, 7,15);//ascension de la virgen
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
+		incluirFechaFestivaFija(anio, Calendar.AUGUST, 7); // batalla de boyaca
 
-		
-		diaFestivo.set(anio, 9,12);//dia de la raza
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
+		diaFestivo.set(anio, Calendar.AUGUST, 15);// ascension de la virgen
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
 
-		
-		diaFestivo.set(anio, 10,1);//todos los santos
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
+		diaFestivo.set(anio, Calendar.OCTOBER, 12);// dia de la raza
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
 
-		
-		diaFestivo.set(anio, 10,11);//independencia cartagena
-		incluirFecha(siguienteDiaSemana(DIA_LUNES, diaFestivo,false,true)); 
+		diaFestivo.set(anio, Calendar.NOVEMBER, 1);// todos los santos
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
 
-		
-		diaFestivo.set(anio, 11,8);//inmaculada concepcion
-		incluirFecha(diaFestivo); 
+		diaFestivo.set(anio, Calendar.NOVEMBER, 11);// independencia cartagena
+		incluirFechaVariablePorAnio(siguienteDiaSemana(DIA_LUNES, diaFestivo, false, true));
 
-		
-		diaFestivo.set(anio, 11,25);//navdad
-		incluirFecha(diaFestivo); 
+		incluirFechaFestivaFija(anio, Calendar.DECEMBER, 8);// inmaculada concepcion
 
-		
+		incluirFechaFestivaFija(anio, Calendar.DECEMBER, 25);// navdad
+
 		return diasFestivos;
 
 	}
 
-	private static void incluirFecha(Calendar diaFestivo) {
-		 if (!diasFestivos.contains(diaFestivo)){
-			 Fechautil.asignarTiempoCero(diaFestivo);
-			 diasFestivos.add(diaFestivo);
-		 }
+	private static void incluirFechaVariablePorAnio(Calendar diaFestivo) {
+
+		Calendar fechaAgregar = Calendar.getInstance();
+		fechaAgregar.setTime(diaFestivo.getTime());
+
+		Fechautil.asignarTiempoCero(fechaAgregar);
+		diasFestivos.add(fechaAgregar);
 
 	}
 
@@ -114,8 +98,7 @@ public class FestivosColombia {
 		int m = 24;
 		int n = 5;
 
-	
-		 if (anio >= 1900 && anio <= 2099) {
+		if (anio >= 1900 && anio <= 2099) {
 			m = 24;
 			n = 5;
 		} else if (anio >= 2100 && anio <= 2199) {
@@ -153,43 +136,46 @@ public class FestivosColombia {
 		}
 	}
 
-	private static Calendar siguienteDiaSemana(int diaSemana, Calendar fechaReferencia,boolean haciaAtras,boolean inclusive) {
+	private static Calendar siguienteDiaSemana(int diaSemana, Calendar fechaReferencia, boolean haciaAtras,
+			boolean inclusive) {
 		Calendar fecha = Calendar.getInstance();
 		fecha.setTime(fechaReferencia.getTime());
-		if (inclusive){
+		if (inclusive) {
 			if (fecha.get(Calendar.DAY_OF_WEEK) == diaSemana) {
 				return fecha;
 			}
-		}
-		else{
-			if(haciaAtras){
+		} else {
+			if (haciaAtras) {
 				fecha.add(Calendar.DAY_OF_YEAR, -1);
-			}
-			else{
+			} else {
 				fecha.add(Calendar.DAY_OF_YEAR, 1);
 			}
 		}
 		while (fecha.get(Calendar.DAY_OF_WEEK) != diaSemana) {
-			if(haciaAtras){
+			if (haciaAtras) {
 				fecha.add(Calendar.DAY_OF_YEAR, -1);
-			}
-			else{
+			} else {
 				fecha.add(Calendar.DAY_OF_YEAR, 1);
 			}
 		}
 		return fecha;
 	}
 
-	public static boolean esfestivo(List<Calendar>listafestivos,Calendar fechaFestiva){
+	public static boolean esfestivo(List<Calendar> listafestivos, Calendar fechaFestiva) {
 		Fechautil.asignarTiempoCero(fechaFestiva);
-		for ( int i=0;i<listafestivos.size();i++){
-			if(fechaFestiva.getTime().equals(listafestivos.get(i).getTime())){
+		for (int i = 0; i < listafestivos.size(); i++) {
+			if (fechaFestiva.getTime().equals(listafestivos.get(i).getTime())) {
 				return true;
-			}	
+			}
 		}
 		return false;
-		
+
 	}
 
-	
+	private static void incluirFechaFestivaFija(int anio, int mes, int dia) {
+		Calendar fechaAgregar = Calendar.getInstance();
+		fechaAgregar.set(anio, mes, dia);
+		Fechautil.asignarTiempoCero(fechaAgregar);
+		diasFestivos.add(fechaAgregar);
+	}
 }

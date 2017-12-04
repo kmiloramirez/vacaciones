@@ -6,7 +6,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import dominio.AdministradorSolicitudes;
 import dominio.CalculoDeDiasDeVacaciones;
+import ldap.Ldapconexion;
 
 @Configuration
 public class VacacionConfiguracion {
@@ -15,6 +17,17 @@ public class VacacionConfiguracion {
 	public CalculoDeDiasDeVacaciones creaCalculoDeDiasDeVacaciones(){
 		return new CalculoDeDiasDeVacaciones();
 	}
+	
+	@Bean
+	public AdministradorSolicitudes creaAdministradorSolicitudes(){
+		return new AdministradorSolicitudes();
+	}
+	
+	@Bean
+	public Ldapconexion crearConexionLDAP(){
+		return new Ldapconexion();
+	}
+
 		
 	@Bean
     public CorsFilter corsFilter() {

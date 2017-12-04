@@ -13,7 +13,7 @@ public class SolicitudBuilder {
 			return null;
 		}else{
 			if(solicitudEntity.getFechaDeSolicitudDeinicio()!=null){
-			SolicitudVacaciones solicitud= new SolicitudVacaciones(solicitudEntity.getFechaDeSolicitudDeinicio(), solicitudEntity.getFechaDeSolicitudFin(), solicitudEntity.getJefeInmediato());
+			SolicitudVacaciones solicitud= new SolicitudVacaciones(solicitudEntity.getFechaDeSolicitudDeinicio(), solicitudEntity.getFechaDeSolicitudFin(), solicitudEntity.getJefeInmediato(),solicitudEntity.getEstado());
 			solicitud.setCantidadDeDias(solicitudEntity.getCantidadDeDias());
 			solicitud.setFechaDeRegreso(solicitudEntity.getFechaDeRegreso());
 			return solicitud;

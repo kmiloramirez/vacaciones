@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import dominio.CalculoDeDiasDeVacaciones;
 import dominio.SolicitudVacaciones;
+import dominio.constantes.EstadosSolicitud;
 import persistencia.builder.SolicitudBuilder;
 import persistencia.entidad.SolicitudEntidad;
 
@@ -21,7 +22,7 @@ public class SolicitudVacacionesTestDatabBuilder {
 	public void deDominioAEntidadTest(){
 		fechaInicioVacionesTest.set(2017, Calendar.FEBRUARY, 6);
 		fechaFinVacionesTest.set(2017, Calendar.FEBRUARY, 28);
-		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David");
+		testSolicitudVacaciones = new SolicitudVacaciones(fechaInicioVacionesTest, fechaFinVacionesTest, "David",EstadosSolicitud.PENDIENTE.getValue());
 		calculoDeDiasDeVacaciones.calcularDias(testSolicitudVacaciones);
 		Assert.assertNotNull(SolicitudBuilder.convertirAEntity(testSolicitudVacaciones));
 	}

@@ -24,3 +24,5 @@ dist/
 nbdist/
 .nb-gradle/
 /bin/
+VacacionesFront/
+src/main/java/dominio/AdministradorSolicitudes.java
